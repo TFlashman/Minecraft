@@ -1,0 +1,20 @@
+# Log in to Azure
+az login
+
+# Set the subscription (replace <subscription-id> with your actual subscription ID)
+az account set --subscription <subscription-id>
+
+# Variables (replace with your actual values)
+ACR_NAME="kschacr"
+IMAGE_NAME=<your-image-name>
+IMAGE_TAG=<your-image-tag>
+DOCKERFILE_PATH=<path-to-your-dockerfile>
+
+# Log in to Azure Container Registry
+az acr login --name $ACR_NAME
+
+# Build the Docker image and push it to ACR
+az acr build --registry $ACR_NAME --image $IMAGE_NAME:$IMAGE_TAG $DOCKERFILE_PATH
+
+# Verify the image is in the registry
+az acr repository show-tags --name $ACR_NAME --repository $IMAGE_NAME
