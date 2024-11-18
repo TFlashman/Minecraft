@@ -1,0 +1,8 @@
+services:
+  minecraft:
+    image: minecraft-fromscratch:latest
+    ports:
+      - "25565:25565"
+    stdin_open: true
+    tty: true
+    restart: unless-stopped

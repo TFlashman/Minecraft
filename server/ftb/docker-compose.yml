@@ -1,0 +1,17 @@
+
+services:
+  minecraft-ftb:
+    image: kaareschmidt/ftbrevelation:latest
+    container_name: minecraft-ftb
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+    stop_grace_period: 1m
+    # environment:
+    #   - "FTB_MODPACK_ID=119"
+    #   - "FTB_MODPACK_VERSION_ID=11614"
+    #   - "ACCEPT_MOJANG_EULA=1"
+    volumes:
+      - ./volume:/var/lib/minecraft:rw
+    ports:
+      - 25565:25565
