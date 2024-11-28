@@ -59,7 +59,7 @@ resource minecraftserver 'Microsoft.ContainerInstance/containerGroups@2023-05-01
         azureFile: {
           shareName: 'ftbshare'
           storageAccountName: 'kschftb'
-          storageAccountKey: '3K+uL6C0ZbaG03HFu9itR5Bt1vU+fyYcrqj8QFWblMqntI5uAW5QxWR7c30v9fnj6xp5HHsROGT0+AStcTWeYQ=='
+          storageAccountKey: // put account key here
         }
       }
     ]
