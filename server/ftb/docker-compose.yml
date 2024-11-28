@@ -7,10 +7,10 @@ services:
     tty: true
     stdin_open: true
     stop_grace_period: 1m
-    # environment:
-    #   - "FTB_MODPACK_ID=119"
-    #   - "FTB_MODPACK_VERSION_ID=11614"
-    #   - "ACCEPT_MOJANG_EULA=1"
+    environment:
+      - "FTB_MODPACK_ID=123"
+      - "FTB_MODPACK_VERSION_ID=12404" #ftb neotech v. 1.7.0
+      - "ACCEPT_MOJANG_EULA=1"
     volumes:
       - ./volume:/var/lib/minecraft:rw
     ports:

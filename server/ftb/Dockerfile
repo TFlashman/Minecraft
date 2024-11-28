@@ -27,10 +27,10 @@ RUN set -eux; \
 # Set up container user
 
 RUN set -eux; \
-    groupadd --gid 99 --system minecraft; \
-    useradd \
-    --gid minecraft \
-    --home-dir /var/lib/minecraft \
+    addgroup --gid 99 --system minecraft; \
+    adduser \
+    --ingroup minecraft \
+    --home /var/lib/minecraft \
     --no-create-home \
     --system \
     --uid 99 \
