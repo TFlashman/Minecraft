@@ -42,7 +42,12 @@ RUN set -eux; \
 STOPSIGNAL SIGINT
 
 COPY docker-entrypoint.sh /usr/local/bin/
-ENTRYPOINT ["docker-entrypoint.sh"]
+
+# RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+RUN chmod 777 /usr/local/bin/docker-entrypoint.sh && \
+    ln -s /usr/local/bin/docker-entrypoint.sh / # backwards compat
+
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 
 WORKDIR /var/lib/minecraft
 

@@ -32,3 +32,11 @@ az storage account create --resource-group $ACI_PERS_RESOURCE_GROUP --name $ACI_
 STORAGE_KEY=$(az storage account keys list --resource-group $ACI_PERS_RESOURCE_GROUP --account-name $ACI_PERS_STORAGE_ACCOUNT_NAME --query "[0].value" --output tsv)
 echo $STORAGE_KEY
 ```
+
+
+##
+build for architecture other than the one running on your machine:
+example:
+```
+docker build --platform=linux/amd64 -t ghcr.io/tflashman/ftb .
+```
