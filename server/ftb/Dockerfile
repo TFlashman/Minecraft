@@ -1,36 +1,34 @@
-FROM alpine:latest
+FROM debian:bookworm-slim
 
 # Environment
 
 ENV FTB_MODPACK_ID=0
 ENV FTB_MODPACK_VERSION_ID=0
-
-ENV ACCEPT_MOJANG_EULA=1
-
-ENV JAVA_MEMORY_MIN=4096M
-ENV JAVA_MEMORY_MAX=6144M
+ENV ACCEPT_MOJANG_EULA=0
+ENV USER_JVM_ARGS=""
+ENV AUTO_UPDATE=0
+ENV FORCE_REINSTALL=0
 
 # Set up runtime dependencies
 
+# hadolint ignore=DL3008
 RUN set -eux; \
-    # dpkg --add-architecture amd64 ; \
-    apk update && \
-    apk add \
+    apt-get update; \
+    apt-get install -y --no-install-recommends \
     ca-certificates \
     curl \
     jq \
-    # libc6:amd64 \
-    # libgcc1 \
-    ;
-# rm -rf /var/lib/apt/lists/*
+    ; \
+    rm -rf /var/lib/apt/lists/*
 
 # Set up container user
 
+# hadolint ignore=DL3008
 RUN set -eux; \
-    addgroup --gid 99 --system minecraft; \
-    adduser \
-    --ingroup minecraft \
-    --home /var/lib/minecraft \
+    groupadd --gid 99 --system minecraft; \
+    useradd \
+    --gid minecraft \
+    --home-dir /var/lib/minecraft \
     --no-create-home \
     --system \
     --uid 99 \
@@ -44,9 +42,6 @@ RUN set -eux; \
 STOPSIGNAL SIGINT
 
 COPY docker-entrypoint.sh /usr/local/bin/
-
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
-
 ENTRYPOINT ["docker-entrypoint.sh"]
 
 WORKDIR /var/lib/minecraft

@@ -1,7 +1,7 @@
 
 services:
   minecraft-ftb:
-    image: kaareschmidt/ftbrevelation:latest
+    image: ghcr.io/tflashman/ftb:macm1
     container_name: minecraft-ftb
     restart: unless-stopped
     tty: true
@@ -15,3 +15,4 @@ services:
       - ./volume:/var/lib/minecraft:rw
     ports:
       - 25565:25565
+    platform: linux/amd64
