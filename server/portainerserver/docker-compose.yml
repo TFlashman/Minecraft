@@ -1,0 +1,21 @@
+services:
+  ftb:
+    image: itzg/minecraft-server:java8-multiarch
+    container_name: dw20
+    environment:
+      EULA: "true"
+      TYPE: "FTBA"
+      MEMORY: "12G"
+      MAX_MEMORY: "14G"
+      SERVER_NAME: "portainertest"
+      ENABLE_AUTOPAUSE: TRUE
+      MAX_TICK_TIME: -1
+      DIFFICULTY: "normal"
+      FTB_MODPACK_ID: "126"
+    volumes:
+      - data:/data
+    ports:
+      - 25565:25565
+volumes:
+  # declared the named volume, but use default/local storage engine
+  data: {}

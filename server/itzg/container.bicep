@@ -63,9 +63,13 @@ resource minecraftserver 'Microsoft.ContainerInstance/containerGroups@2023-05-01
         azureFile: {
           shareName: 'ftbshare'
           storageAccountName: 'kschftb'
-          storageAccountKey: '' // put account key here
+          storageAccountKey: storageAccount.listKeys().keys[0].value
         }
       }
     ]
   }
+}
+
+resource storageAccount 'Microsoft.Storage/storageAccounts@2022-09-01' existing = {
+  name: 'kschftb'
 }
